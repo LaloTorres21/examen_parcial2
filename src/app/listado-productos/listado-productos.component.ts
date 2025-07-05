@@ -64,6 +64,6 @@ export class ListadoProductosComponent
 
 
   obtenerTachon(data: ITachones) {
-
+ 
   }
 }
