@@ -1,0 +1,53 @@
+<div style="padding-top: 25px;">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>
+                    Listado de Tachones de Fútbol
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6 offset-md-3"> <div class="input-group">
+                            <input type="text" 
+                                   class="form-control" 
+                                   placeholder="Buscar por modelo..."
+                                   [(ngModel)]="filtroModelo" 
+                                   (input)="aplicarFiltroModelo()"> <button class="btn btn-primary" (click)="aplicarFiltroModelo()">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 *ngIf="!isResultLoaded" class="col-md-12 text-center">
+                        Cargando la lista de tachones...
+                    </h2>
+                    <h2 *ngIf="isResultLoaded && listadoTachoes.length === 0" class="col-md-12 text-center">
+                        No se encontraron tachones disponibles.
+                    </h2>
+                    <h2 *ngIf="isResultLoaded && listadoTachoes.length > 0 && listadoTachoesFiltrado.length === 0" class="col-md-12 text-center">
+                        No se encontraron el modelo de tachones"{{ filtroModelo }}".
+                    </h2>
+                </div>
+
+                <div class="row mt-4" *ngIf="isResultLoaded && listadoTachoesFiltrado.length > 0">
+                    <div class="col-md-4 mb-4" *ngFor="let tachon of listadoTachoesFiltrado"> <div class="card h-100 shadow-sm"> <img [src]="tachon.imagen" alt="{{ tachon.modelo }}" class="card-img-top img-fluid" style="height: 200px; object-fit: contain; padding: 10px;">
+                            <div class="card-body text-center"> 
+                                <h5 class="card-title">
+                                    {{ tachon.marca }} - {{ tachon.modelo }}
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Tipo:</strong> {{ tachon.tipoTachon }}
+                                </p>
+                                <p class="card-text">
+                                    <strong>Precio:</strong> ${{ tachon.precio }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
